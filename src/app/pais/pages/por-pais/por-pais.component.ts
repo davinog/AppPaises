@@ -1,48 +1,36 @@
-import { Component, } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Country } from '../../interfaces/pais.interface';
 import { PaisService } from '../../services/pais.service';
 
 @Component({
   selector: 'app-por-pais',
   templateUrl: './por-pais.component.html',
-  styles: [
-    `
-      .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-        background-color: #d7d8d9;
-      }
-
-      .small-flag{
-        width:50px;
-      }
-
-    `
-  ]
+  styles: []
 })
 export class PorPaisComponent {
 
-  termino: string = 'Spain';
+
   hayError: boolean = false;
   paises: Country[] = [];
+  termino: string = '';
 
   constructor(private paisService: PaisService) { }
 
-  buscar() {
-    this.hayError=false;
+  buscar(termino: string) {
 
-    console.log(this.termino);
+    this.hayError = false;
+    this.termino = termino;
 
-    this.paisService.buscarPais(this.termino)
+    this.paisService.buscarPais(termino)
       .subscribe((resp: Country[]) => {
         
         console.log(resp);
         this.paises = resp;
 
-
       }, (err) => {
 
         this.hayError=true;
-        //al recibir un error limpiamos los paises para que no se muestren
-        this.paises = [];
+        this.paises = [];  //al recibir un error limpiamos los paises para que no se muestren
 
       });
 
