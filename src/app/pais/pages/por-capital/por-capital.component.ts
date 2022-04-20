@@ -12,7 +12,7 @@ export class PorCapitalComponent  {
 
   hayError: boolean = false;
   paises: Country[] = [];
-  termino: string = 'Madrid';
+  termino: string = '';
 
   constructor(private paisService: PaisService) { }
   

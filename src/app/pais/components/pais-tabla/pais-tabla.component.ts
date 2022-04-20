@@ -10,9 +10,6 @@ import { Country } from '../../interfaces/pais.interface';
       background-color: #d7d8d9;
     }
 
-    .small-flag{
-      width:50px;
-    }
 
   `
   ]
